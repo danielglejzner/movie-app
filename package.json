@@ -31,6 +31,7 @@
     "@angular/cli": "~18.0.0",
     "@angular/compiler-cli": "~18.0.0",
     "@angular/language-service": "~18.0.0",
+    "@nrwl/workspace": "^19.4.3",
     "@nx/devkit": "19.4.3",
     "@nx/eslint": "19.4.3",
     "@nx/eslint-plugin": "19.4.3",

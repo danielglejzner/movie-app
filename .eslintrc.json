@@ -1,0 +1,23 @@
+{
+    "root": true,
+    "ignorePatterns": ["**/*"],
+    "plugins": ["@nrwl/nx", "@angular-eslint"],
+    "overrides": [
+      {
+        "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+        "extends": ["plugin:@nrwl/nx/typescript"],
+        "rules": {}
+      },
+      {
+        "files": ["*.ts"],
+        "extends": ["plugin:@angular-eslint/recommended"],
+        "rules": {}
+      },
+      {
+        "files": ["*.html"],
+        "extends": ["plugin:@angular-eslint/template/process-inline-templates"],
+        "rules": {}
+      }
+    ]
+  }
+  
