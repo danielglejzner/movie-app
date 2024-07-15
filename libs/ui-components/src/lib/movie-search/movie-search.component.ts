@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MovieService } from '@movie-monorepo/movie-api';
 import { RouterModule } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+
 
 @Component({
   selector: 'lib-ui-movie-search',
@@ -13,20 +12,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   templateUrl: './movie-search.component.html',
   styleUrls: ['./movie-search.component.scss']
 })
-export class MovieSearchComponent implements OnInit {
+export class MovieSearchComponent  {
   searchTerm = '';
   selectedGenre = '';
 
   movieService = inject(MovieService);
-  private destroyRef = inject(DestroyRef);
- 
-
-  ngOnInit(): void {
-    this.movieService.fetchGenres().pipe(
-      switchMap(() => this.movieService.searchMovies()),
-      takeUntilDestroyed(this.destroyRef)
-    ).subscribe();
-  }
 
   searchMovies(): void {
     this.movieService.setSearchTerm(this.searchTerm);
