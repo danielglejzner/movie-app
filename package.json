@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx serve movie-app"
+    "start": "nx serve movie-app",
+    "build": "nx build movie-app"
   },
   "private": true,
   "dependencies": {
