@@ -1,0 +1,54 @@
+<div class="container">
+    <h1>Movie Search</h1>
+    <form (ngSubmit)="searchMovies()">
+        <div class="form-group">
+          <input type="text" class="form-control" [ngModel]="movieService.$searchTerm()" (ngModelChange)="movieService.setSearchTerm($event)" name="searchTerm" placeholder="Search for movies...">
+        </div>
+        <div class="form-group">
+          <select class="form-control" [ngModel]="movieService.$selectedGenre()" (ngModelChange)="movieService.setSelectedGenre($event)" name="selectedGenre">
+            <option value="">All Genres</option>
+            @for (genre of movieService.$genres(); track genre.id) {
+              <option [value]="genre.title">{{ genre.title }}</option>
+            }
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Reset</button>
+      </form>
+      
+    @if (movieService.$totalResults() > 0) {
+        <div class="results">
+          <h2>Results ({{ movieService.$totalResults() }})</h2>
+          <ul class="list-group">
+            @for (movie of movieService.$movies(); track movie.id) {
+              <li class="list-group-item">
+                <div class="movie-item">
+                  <img [src]="movie.posterUrl" alt="{{ movie.title }}" class="img-thumbnail movie-poster">
+                  <div class="movie-info">
+                    <h3>{{ movie.title }}</h3>
+                    <p>{{ movie.rating }}</p>
+                    <a [routerLink]="['/movie', movie.id]" class="btn btn-info">Details</a>
+                  </div>
+                </div>
+              </li>
+            }
+          </ul>
+      
+          <nav>
+            <ul class="pagination">
+              <li class="page-item" [class.disabled]="movieService.$currentPage() === 1">
+                <button class="page-link" (click)="previousPage()">Previous</button>
+              </li>
+              <li class="page-item" [class.disabled]="movieService.$currentPage() >= movieService.$totalResults()">
+                <button class="page-link" (click)="nextPage()">Next</button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      } @else {
+        <div class="no-results">
+          <p>No results found.</p>
+        </div>
+      }
+      
+  </div>
+  

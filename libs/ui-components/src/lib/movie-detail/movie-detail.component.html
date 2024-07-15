@@ -1,0 +1,25 @@
+@if (movie) {
+    <div class="container">
+      <button (click)="goBack()" class="btn btn-secondary">Back</button>
+      <h1 class="movie-title">{{ movie.title }}</h1>
+      <div class="movie-details">
+        <img [src]="movie.posterUrl" alt="{{ movie.title }}" class="img-thumbnail movie-poster">
+        <div class="movie-info">
+          <p><span>Summary:</span> {{ movie.summary }}</p>
+          <p><span>Duration:</span> {{ movie.duration }}</p>
+          <p><span>Directors:</span> {{ movie.directors.join(', ') }}</p>
+          <p><span>Main Actors:</span> {{ movie.mainActors.join(', ') }}</p>
+          <p><span>Genres:</span> {{ getGenreTitles(movie.genres) }}</p>
+          <p><span>Published:</span> {{ movie.datePublished }}</p>
+          <p><span>Rating:</span> {{ movie.rating }} ({{ movie.ratingValue }}/{{ movie.bestRating }})</p>
+          <p><span>Writers:</span> {{ movie.writers ? movie.writers.join(', ') : '' }}</p>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div class="container">
+      <button (click)="goBack()" class="btn btn-secondary">Back</button>
+      <p>No movie details available.</p>
+    </div>
+  }
+  
